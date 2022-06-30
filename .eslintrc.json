@@ -1,3 +1,8 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+
+    /* prettier must be the last one, so it gets the chance to override other configs. */
+    "plugin:prettier/recommended"
+  ]
 }
