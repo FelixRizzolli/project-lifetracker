@@ -4,6 +4,29 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.scss';
 
 import { useSession } from 'next-auth/react';
+import ReactApexChart from 'react-apexcharts';
+
+const series = [44, 55, 13, 43, 22];
+const options = {
+  chart: {
+    width: 380,
+    type: 'pie',
+  },
+  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          width: 200,
+        },
+        legend: {
+          position: 'bottom',
+        },
+      },
+    },
+  ],
+};
 
 const Dashboard: NextPage = () => {
   const { data: session, status } = useSession({ required: true });
@@ -27,6 +50,12 @@ const Dashboard: NextPage = () => {
             Welcome {session?.user?.name?.split(' ')[0]} to{' '}
             <a href="https://nextjs.org">LifeTracker!</a>
           </h1>
+          <ReactApexChart
+            options={options}
+            series={series}
+            type="pie"
+            width={380}
+          />
         </main>
 
         <footer className={styles.footer}>

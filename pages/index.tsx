@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.scss';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import { ArrowSmDownIcon, ArrowSmUpIcon } from '@heroicons/react/solid';
 import {
@@ -14,6 +15,7 @@ import {
 
 const Home: NextPage = () => {
   const { data: session, status } = useSession();
+  const router = useRouter();
 
   return (
     <div className={styles.container}>
@@ -38,7 +40,7 @@ const Home: NextPage = () => {
           className={styles.loginButton}
           onClick={() => {
             if (status === 'authenticated') {
-              window.location.href = '/dashboard';
+              router.push('/dashboard');
             } else {
               signIn();
             }
